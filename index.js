@@ -1,6 +1,13 @@
 const Person = require("./Models/Person");
 
 
+require ('dotenv').config()
+const PORT = process.env.PORT
+
+// Connexion to database
+const connectDB = require('./Util/Database')
+connectDB()
+
 //Create_and_Save_a_Record_of_a_Model
 Person.insertMany([{
     name:"Firas Djebby",
@@ -55,3 +62,13 @@ Person.findByIdAndRemove(id, function (err, docs) {console.log("Removed Person :
 // model.remove()
 Person.remove({name:"Firas Djebby"})
 .then(removedPersons => {console.log("Removed Person :",removedPersons)});
+
+
+
+
+app.listen(PORT, error =>{
+    error? console.log(`fail to connect ${error}`) :
+    console.log(`Server is running on port ${PORT}`)
+}
+    )
+

@@ -1,3 +1,12 @@
-const mongoose = require("mongoose");
-const connection = mongoose.createConnection("mongodb://localhost:27017/checkpoint");
-module.exports = connection;
+const mongoose = require ('mongoose');
+const connectDB = async() =>{
+    try {
+        await mongoose.connect(process.env.MONGO_URI)
+        console.log(`MongoDB Connected`);
+
+    }catch(error){
+        console.log(`Database is not Connected`);
+    }
+
+};
+module.exports = connectDB;
